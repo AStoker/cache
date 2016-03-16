@@ -32,9 +32,9 @@ interface CacheStorage {
   /**
   * Sets an item in the storage with the provided key and value.
   * @key The storage item's key.
-  * @value The storage item's value;
+  * @value The storage item's value
   */
-  setItem(key: string, value: string);
+  setItem(key: string, value: string): void;
   /**
   * Gets an item from the storage with the provided key.
   * @key The storage item's key.

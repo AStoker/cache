@@ -1,7 +1,7 @@
 export class BinaryHeap {
   constructor(weightFunc, compareFunc) {
-    this.weightFunc = weightFunc || x => x;
-    this.compareFunc = compareFunc || (x, y) => x === y;
+    this.weightFunc = weightFunc || (x => x);
+    this.compareFunc = compareFunc || ((x, y) => x === y);
     this.heap = [];
   }
 

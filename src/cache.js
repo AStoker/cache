@@ -7,8 +7,8 @@ interface CacheConfiguration {
 let cacheConstructionKey = {};
 
 export class CacheManager {
-  _configurationLookup: {};
-  _cacheLookup: {};
+  _configurationLookup = {};
+  _cacheLookup = {};
   _defaults = {
     storage: cacheStorageOption.memory
   };
@@ -21,7 +21,7 @@ export class CacheManager {
   configure(name: string, configuration?: CacheConfiguration): CacheManager {
     let key = 'aurelia:cache:' + name;
 
-    if(key in this._configurationLookup) {
+    if (key in this._configurationLookup) {
       throw new Error(`Cache ${name} has already been configured.`);
     }
 
@@ -40,14 +40,14 @@ export class CacheManager {
   getCache(name: string): Cache {
     let key = 'aurelia:cache:' + name;
 
-    if(key in this._cacheLookup) {
+    if (key in this._cacheLookup) {
       return this._cacheLookup[key];
     }
 
     let configuration = this._configurationLookup[key]
       || (this._configurationLookup[key] = Object.assign({ key: key }, this.defaultCofiguration));
 
-    return this._cacheLookup[key] = new Cache(configuration, cacheConstructionKey);
+    return (this._cacheLookup[key] = new Cache(configuration, cacheConstructionKey));
   }
 }
 
@@ -63,7 +63,7 @@ export class CacheResolver {
 }
 
 export class Cache {
-  constructor(configuration: CacheConfiguration, constructionKey: Object) {
+  constructor(configuration: CacheConfiguration, constructionKey: any) {
     if (constructionKey !== cacheConstructionKey) {
       throw new Error('You cannot instantiate "Cache".');
     }
